@@ -22,6 +22,11 @@ function App() {
   const [fiatAmount, setFiatAmount] = useState('')
   const [satsAmount, setSatsAmount] = useState('')
   const [showQR, setShowQR] = useState(false)
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme)
+  }, [theme])
 
   useEffect(() => {
     let cancelled = false
@@ -96,6 +101,15 @@ function App() {
 
   return (
     <div className="app">
+      <button
+        type="button"
+        className="theme-toggle"
+        onClick={() => setTheme((t) => (t === 'light' ? 'dark' : 'light'))}
+        aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+        title={theme === 'light' ? 'Dark mode' : 'Light mode'}
+      >
+        {theme === 'light' ? '🌙' : '☀️'}
+      </button>
       <header className="app-header">
         <h1 className="app-title">Fiat ↔ Sats</h1>
         <p className="app-subtitle">Convert between fiat and Bitcoin (satoshis)</p>

@@ -1,10 +1,86 @@
-/* Fiat ↔ Sats — FinTech-style (Revolut / CashApp) */
+/* Fiat ↔ Sats — FinTech-style + Dark Mode (Crypto App) */
+
+/* Light theme (default) */
+:root {
+  --app-bg: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+  --card-bg: #fff;
+  --text-color: #0a0a0a;
+  --text-muted: #4a4a4a;
+  --text-label: #1a1a1a;
+  --input-bg: #fff;
+  --border-color: #e0e0e5;
+  --border-hover: #c8c8d0;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-focus: rgba(0, 0, 0, 0.08);
+  --status-error-bg: #fef2f2;
+  --status-error-color: #b91c1c;
+  --donate-btn-bg: linear-gradient(135deg, #0a0a0a 0%, #2a2a2e 100%);
+  --donation-close-bg: #f0f0f4;
+  --donation-close-hover: #e0e0e5;
+  --select-arrow: #4a4a4a;
+}
+
+/* Dark theme — Crypto App (deep blues/grays) */
+body[data-theme="dark"] {
+  --app-bg: linear-gradient(180deg, #0f172a 0%, #0c1222 50%, #080d18 100%);
+  --card-bg: #1e293b;
+  --text-color: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-label: #e2e8f0;
+  --input-bg: #1e293b;
+  --border-color: #334155;
+  --border-hover: #475569;
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-focus: rgba(99, 179, 237, 0.35);
+  --status-error-bg: #3f1a1a;
+  --status-error-color: #fca5a5;
+  --donate-btn-bg: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  --donation-close-bg: #334155;
+  --donation-close-hover: #475569;
+  --select-arrow: #94a3b8;
+}
 
 .app {
   min-height: 100vh;
-  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+  background: var(--app-bg);
   padding: clamp(1rem, 4vw, 2rem);
   box-sizing: border-box;
+  position: relative;
+}
+
+/* Theme toggle — top-right */
+.theme-toggle {
+  position: absolute;
+  top: clamp(1rem, 4vw, 2rem);
+  right: clamp(1rem, 4vw, 2rem);
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--border-color);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+  transform: scale(1.05);
+}
+
+.theme-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--shadow-focus);
 }
 
 .app-header {
@@ -15,14 +91,14 @@
 .app-title {
   font-size: clamp(1.75rem, 5vw, 2.25rem);
   font-weight: 800;
-  color: #0a0a0a;
+  color: var(--text-color);
   letter-spacing: -0.02em;
   margin: 0 0 0.25rem 0;
 }
 
 .app-subtitle {
   font-size: clamp(0.875rem, 2.5vw, 1rem);
-  color: #4a4a4a;
+  color: var(--text-muted);
   font-weight: 500;
   margin: 0;
 }
@@ -31,13 +107,14 @@
   text-align: center;
   font-size: clamp(0.9375rem, 2.5vw, 1.0625rem);
   font-weight: 700;
-  color: #0a0a0a;
-  background: #fff;
+  color: var(--text-color);
+  background: var(--card-bg);
   padding: 0.75rem 1rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
   margin: 0 auto 1.5rem auto;
   max-width: 360px;
+  border: 1px solid var(--border-color);
 }
 
 .status {
@@ -50,17 +127,18 @@
   max-width: 360px;
   margin-left: auto;
   margin-right: auto;
+  border: 1px solid var(--border-color);
 }
 
 .status-loading {
-  background: #fff;
-  color: #4a4a4a;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  background: var(--card-bg);
+  color: var(--text-muted);
+  box-shadow: var(--shadow-md);
 }
 
 .status-error {
-  background: #fef2f2;
-  color: #b91c1c;
+  background: var(--status-error-bg);
+  color: var(--status-error-color);
   box-shadow: 0 2px 8px rgba(185, 28, 28, 0.12);
 }
 
@@ -81,7 +159,7 @@
 .input-group label {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-label);
   letter-spacing: 0.01em;
 }
 
@@ -96,12 +174,12 @@
   padding: 1rem 0.75rem;
   font-size: 1rem;
   font-weight: 700;
-  color: #0a0a0a;
-  background: #fff;
-  border: 2px solid #e0e0e5;
+  color: var(--text-color);
+  background: var(--input-bg);
+  border: 2px solid var(--border-color);
   border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
   transition: border-color 0.2s, box-shadow 0.2s;
   -webkit-appearance: none;
   appearance: none;
@@ -111,14 +189,18 @@
   padding-right: 2rem;
 }
 
+body[data-theme="dark"] .currency-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+}
+
 .currency-select:hover {
-  border-color: #c8c8d0;
+  border-color: var(--border-hover);
 }
 
 .currency-select:focus {
   outline: none;
-  border-color: #0a0a0a;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  border-color: var(--text-color);
+  box-shadow: 0 0 0 3px var(--shadow-focus);
 }
 
 .amount-input {
@@ -127,27 +209,27 @@
   padding: 1rem 1rem;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #0a0a0a;
-  background: #fff;
-  border: 2px solid #e0e0e5;
+  color: var(--text-color);
+  background: var(--input-bg);
+  border: 2px solid var(--border-color);
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .amount-input::placeholder {
-  color: #a0a0a8;
+  color: var(--text-muted);
   font-weight: 600;
 }
 
 .amount-input:hover {
-  border-color: #c8c8d0;
+  border-color: var(--border-hover);
 }
 
 .amount-input:focus {
   outline: none;
-  border-color: #0a0a0a;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  border-color: var(--text-color);
+  box-shadow: 0 0 0 3px var(--shadow-focus);
 }
 
 .amount-input-sats {
@@ -162,8 +244,8 @@
     font-size: 1.125rem;
   }
 
-.amount-input {
-  font-size: 1.375rem;
+  .amount-input {
+    font-size: 1.375rem;
   }
 }
 
@@ -175,7 +257,7 @@
   font-size: 1.0625rem;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(135deg, #0a0a0a 0%, #2a2a2e 100%);
+  background: var(--donate-btn-bg);
   border: none;
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
@@ -194,7 +276,7 @@
 
 .donate-btn:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px var(--shadow-focus);
 }
 
 /* Donation modal backdrop */
@@ -210,25 +292,31 @@
   box-sizing: border-box;
 }
 
-/* Donation modal */
+body[data-theme="dark"] .donation-backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Donation modal — card uses theme; QR area always white for scannability */
 .donation-modal {
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 16px;
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
   padding: 1.75rem;
   max-width: 320px;
   width: 100%;
   text-align: center;
+  border: 1px solid var(--border-color);
 }
 
 .donation-modal-title {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #0a0a0a;
+  color: var(--text-color);
   margin: 0 0 1.25rem 0;
   letter-spacing: -0.02em;
 }
 
+/* QR box: always white background so QR remains scannable */
 .donation-qr-wrap {
   display: flex;
   align-items: center;
@@ -247,7 +335,7 @@
 .donation-address {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #4a4a4a;
+  color: var(--text-muted);
   word-break: break-all;
   margin: 0 0 1.25rem 0;
 }
@@ -257,8 +345,8 @@
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 700;
-  color: #0a0a0a;
-  background: #f0f0f4;
+  color: var(--text-color);
+  background: var(--donation-close-bg);
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -267,10 +355,10 @@
 }
 
 .donation-close:hover {
-  background: #e0e0e5;
+  background: var(--donation-close-hover);
 }
 
 .donation-close:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #0a0a0a;
+  box-shadow: 0 0 0 2px var(--text-color);
 }
