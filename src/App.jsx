@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { QRCode } from 'react-qr-code'
 import './App.css'
 
 const SATS_PER_BTC = 100_000_000
@@ -20,6 +21,7 @@ function App() {
   const [fiatCurrency, setFiatCurrency] = useState('MXN')
   const [fiatAmount, setFiatAmount] = useState('')
   const [satsAmount, setSatsAmount] = useState('')
+  const [showQR, setShowQR] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -176,7 +178,52 @@ function App() {
             aria-label="Satoshi amount"
           />
         </div>
+
+        <button
+          type="button"
+          className="donate-btn"
+          onClick={() => setShowQR(true)}
+          aria-label="Donate sats via Lightning"
+        >
+          ⚡ Donate Sats
+        </button>
       </main>
+
+      {showQR && (
+        <div
+          className="donation-backdrop"
+          onClick={() => setShowQR(false)}
+          onKeyDown={(e) => e.key === 'Escape' && setShowQR(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="donation-modal-title"
+        >
+          <div
+            className="donation-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 id="donation-modal-title" className="donation-modal-title">
+              Lightning Donation
+            </h2>
+            <div className="donation-qr-wrap">
+              <QRCode
+                value="majorduck25@primal.net"
+                size={200}
+                level="M"
+                className="donation-qr"
+              />
+            </div>
+            <p className="donation-address">majorduck25@primal.net</p>
+            <button
+              type="button"
+              className="donation-close"
+              onClick={() => setShowQR(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

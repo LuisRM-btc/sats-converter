@@ -162,7 +162,115 @@
     font-size: 1.125rem;
   }
 
-  .amount-input {
-    font-size: 1.375rem;
+.amount-input {
+  font-size: 1.375rem;
   }
+}
+
+/* Lightning Donation */
+.donate-btn {
+  margin-top: 1rem;
+  min-height: 52px;
+  padding: 1rem 1.5rem;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #0a0a0a 0%, #2a2a2e 100%);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+
+.donate-btn:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transform: translateY(-1px);
+}
+
+.donate-btn:active {
+  transform: translateY(0);
+}
+
+.donate-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Donation modal backdrop */
+.donation-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Donation modal */
+.donation-modal {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+  padding: 1.75rem;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+}
+
+.donation-modal-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0a0a0a;
+  margin: 0 0 1.25rem 0;
+  letter-spacing: -0.02em;
+}
+
+.donation-qr-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #e8e8ed;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.donation-qr {
+  display: block;
+}
+
+.donation-address {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #4a4a4a;
+  word-break: break-all;
+  margin: 0 0 1.25rem 0;
+}
+
+.donation-close {
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  background: #f0f0f4;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.donation-close:hover {
+  background: #e0e0e5;
+}
+
+.donation-close:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #0a0a0a;
 }
